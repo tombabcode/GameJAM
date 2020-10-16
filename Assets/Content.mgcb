@@ -1,0 +1,35 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:..\bin\$(Configuration)\netcoreapp3.1\Assets
+/intermediateDir:..\obj\$(Configuration)\netcoreapp3.1\Assets
+/platform:DesktopGL
+/config:Debug
+/profile:Reach
+/compress:True
+
+#-------------------------------- References --------------------------------#
+
+
+#---------------------------------- Content ---------------------------------#
+
+#begin Fonts/Caroni-Regular.otf
+/copy:Fonts/Caroni-Regular.otf
+
+#begin Fonts/regular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/regular.spritefont
+
+#begin Fonts/SIL Open Font License.txt
+/copy:Fonts/SIL Open Font License.txt
+
+#begin Fonts/small.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/small.spritefont
+

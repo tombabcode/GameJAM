@@ -1,19 +1,29 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using TBEngine.Services;
+using GameJAM.Gameplay;
+using TBEngine.Utils;
+
+using CFG = GameJAM.Types.ConfigType;
+using GameJAM.Services;
 
 namespace GameJAM {
     public sealed class Core : Game {
         
+        private GraphicsDeviceManager _graphics;
         private SpriteBatch _canvas;
 
-        private ContentService _content;
+        private ContentDataService _content;
         private InputService _input;
-        private ConfigurationService _config;
+        private ConfigurationDataService _config;
+
+        private CoreView _gameplay;
         
         public Core( ) {
-            _ = new GraphicsDeviceManager(this);
+            _graphics = new GraphicsDeviceManager(this);
+            
             Content.RootDirectory = "Assets";
+            IsMouseVisible = true;
         }
 
         protected override void Initialize( ) {
@@ -21,16 +31,33 @@ namespace GameJAM {
 
             _canvas = new SpriteBatch(GraphicsDevice);
 
-            _config = new ConfigurationService( );
-            _content = new ContentService(Content, GraphicsDevice, _canvas);
+            _config = new ConfigurationDataService( );
+            _content = new ContentDataService(Content, GraphicsDevice, _canvas);
             _input = new InputService( );
+
+            _config.Add(CFG.WindowWidth, "360");
+            _config.Add(CFG.WindowHeight, "640");
+            _config.LoadConfiguration( );
+
+            _gameplay = new CoreView(_input, _content, _config, Exit);
+            _gameplay.NewGame( );
+
+            DisplayHelper.Content = _content;
+
+            _graphics.PreferredBackBufferWidth = _config.GetInt(CFG.WindowWidth);
+            _graphics.PreferredBackBufferHeight = _config.GetInt(CFG.WindowHeight);
+            _graphics.ApplyChanges( );
+
+            _content.LoadContent( );
         }
 
         protected override void Update(GameTime gameTime) {
+            _gameplay.Update(gameTime);
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime) {
+            _gameplay.Display( );
             base.Draw(gameTime);
         }
 
