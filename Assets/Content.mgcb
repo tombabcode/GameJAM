@@ -13,8 +13,21 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Fonts/Caroni-Regular.otf
-/copy:Fonts/Caroni-Regular.otf
+#begin background.png
+/copy:background.png
+
+#begin Fonts/Bellota-Bold.otf
+/copy:Fonts/Bellota-Bold.otf
+
+#begin Fonts/Bellota-Regular.otf
+/copy:Fonts/Bellota-Regular.otf
+
+#begin Fonts/big.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/big.spritefont
 
 #begin Fonts/regular.spritefont
 /importer:FontDescriptionImporter
@@ -32,4 +45,10 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/small.spritefont
+
+#begin GUI/item_border.png
+/copy:GUI/item_border.png
+
+#begin hunger.png
+/copy:hunger.png
 

@@ -10,6 +10,8 @@ using DH = TBEngine.Utils.DisplayHelper;
 
 namespace GameJAM.Components {
     public sealed class PauseComponent : IComponent {
+        public int AbsoluteX { get; set; }
+        public int AbsoluteY { get; set; }
 
         private ContentDataService _content;
         private InputService _input;
@@ -57,7 +59,7 @@ namespace GameJAM.Components {
             });
         }
 
-        public void Display(int x, int y) => DH.Scene(_resultScene, x, y);
+        public void Display( ) => DH.Scene(_resultScene, AbsoluteX, AbsoluteY);
 
     }
 }

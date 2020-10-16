@@ -1,6 +1,7 @@
 using System;
 using GameJAM.Services;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using TBEngine.Services;
 using TBEngine.Types;
 using TBEngine.Utils;
@@ -24,15 +25,20 @@ namespace GameJAM.Components.Elements {
         public Action OnHover { get; set; }
         public Action OnClick { get; set; }
 
+
+        private bool _isOver;
+
         public void Update(InputService input) {
-            if (input.HasSwitchedArea(X, Y, Width, Height)) OnHover?.Invoke( );
-            if (input.IsOver(X, Y, Width, Height) && input.IsLMBPressedOnce( )) OnClick?.Invoke( );
+            Vector2 position = AlignmentHelper.Position(ButtonAlign, X, Y, Width, Height);
+            _isOver = input.IsOver((int)position.X, (int)position.Y, Width, Height);
+            if (input.HasSwitchedArea((int)position.X, (int)position.Y, Width, Height)) OnHover?.Invoke( );
+            if (_isOver && input.IsLMBPressedOnce( )) OnClick?.Invoke( );
         }
 
         public void Display(ContentDataService content) {
             Vector2 position = AlignmentHelper.Position(ButtonAlign, X, Y, Width, Height);
             if (BackgroundColor != null) DH.Box((int)position.X, (int)position.Y, Width, Height, BackgroundColor ?? Color.White);
-            DH.Text(content.FontRegular, Text, (int)position.X + Width / 2, (int)position.Y + Height / 2, TextColor, AlignType.CM);
+            DH.Text(_isOver ? content.FontRegular : content.FontSmall, Text, (int)position.X + Width / 2, (int)position.Y + Height / 2, TextColor, AlignType.CM);
         }
 
     }

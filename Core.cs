@@ -40,7 +40,6 @@ namespace GameJAM {
             _config.LoadConfiguration( );
 
             _gameplay = new CoreView(_input, _content, _config, Exit);
-            _gameplay.NewGame( );
 
             DisplayHelper.Content = _content;
 

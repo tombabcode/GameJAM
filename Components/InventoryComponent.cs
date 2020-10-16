@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using GameJAM.Components.Elements;
 using GameJAM.Gameplay;
@@ -10,7 +10,8 @@ using TBEngine.Types;
 using DH = TBEngine.Utils.DisplayHelper;
 
 namespace GameJAM.Components {
-    public sealed class JourneyComponent : IComponent {
+    public sealed class InventoryComponent : IComponent {
+
         public int AbsoluteX { get; set; }
         public int AbsoluteY { get; set; }
 
@@ -20,13 +21,13 @@ namespace GameJAM.Components {
 
         private RenderTarget2D _resultScene;
 
-        private ItemListElement _itemListElement;
-
         private Action _onClose;
 
-        private Button _backButton;
+        private ItemListElement _itemListElement;
 
-        public JourneyComponent(ContentDataService content, InputService input, ConfigurationDataService config, Action onClose) {
+        private Button _closeButton;
+
+        public InventoryComponent(ContentDataService content, InputService input, ConfigurationDataService config, Action onClose, List<Item> items) {
             _content = content;
             _input = input;
             _config = config;
@@ -34,22 +35,18 @@ namespace GameJAM.Components {
 
             _resultScene = new RenderTarget2D(_content.Device, _config.WindowWidth, _config.WindowHeight);
 
-            List<Item> itemsFound = new List<Item>( );
-            itemsFound.Add(content.SpawnItem("blackberry"));
-            itemsFound.Add(content.SpawnItem("mushroom_leccinum"));
-
-            _itemListElement = new ItemListElement(_content, _input, itemsFound, _config.WindowWidth - 16, _config.WindowHeight - 124) {
+            _itemListElement = new ItemListElement(_content, _input, items, _config.WindowWidth - 16, _config.WindowHeight - 56) {
                 AbsoluteX = AbsoluteX + 16,
-                AbsoluteY = AbsoluteY + 68
+                AbsoluteY = AbsoluteY + 48
             };
 
-            _backButton = new Button( ) {
-                Text = "Back to campsite",
-                X = _config.WindowWidth / 2,
-                Y = _config.WindowHeight - 8,
-                Width = _config.WindowWidth - 16,
+            _closeButton = new Button( ) {
+                Text = "X",
+                X = _config.WindowWidth - 4,
+                Y = 4,
+                ButtonAlign = AlignType.RT,
+                Width = 24,
                 Height = 32,
-                ButtonAlign = AlignType.CB,
                 OnClick = onClose
             };
         }
@@ -59,20 +56,18 @@ namespace GameJAM.Components {
                 _onClose?.Invoke( );
 
             _itemListElement.Update( );
-            _backButton.Update(_input);
+            _closeButton.Update(_input);
         }
 
         public void Render( ) {
             _itemListElement.Render( );
 
-            DH.RenderScene(_resultScene, () => {
+            DH.RenderScene(_resultScene, ( ) => {
                 DH.TransparentBox(0, 0, _resultScene.Width, _resultScene.Height, .75f);
-                DH.Text(_content.FontSmall, "During my wanderings I found few things.", _resultScene.Width / 2, 12, align: AlignType.CT);
-                DH.Text(_content.FontSmall, "I decided to take with me...", _resultScene.Width / 2, 34, align: AlignType.CT);
+                DH.Text(_content.FontSmall, "Inventory", _resultScene.Width / 2, 20, align: AlignType.CM);
 
+                _closeButton.Display(_content);
                 _itemListElement.Display( );
-
-                _backButton.Display(_content);
             });
         }
 

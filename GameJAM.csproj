@@ -4,12 +4,17 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
+    <PackageReference Include="MonoGame.Framework.Content.Pipeline" Version="3.8.0.1641" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="TBEngine">
-      <HintPath>C:\Users\tbabiak\Desktop\Nowy folder\TBEngine\bin\Debug\netstandard2.0\TBEngine.dll</HintPath>
+      <HintPath>..\TBEngine\bin\Debug\netstandard2.0\TBEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641"/>
-    <PackageReference Include="MonoGame.Framework.Content.Pipeline" Version="3.8.0.1641"/>
+    <None Update="Assets\items_data.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
