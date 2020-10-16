@@ -6,12 +6,14 @@ namespace GameJAM.Gameplay {
         public string Name { get; private set; }
         public ItemType Type { get; private set; }
         public int SkinID { get; private set; }
+        public float Weight { get; private set; }
         public int Amount { get; private set; }
 
-        public Item(string name, ItemType type, int skinID, int amount = 1) {
+        public Item(string name, ItemType type, int skinID, float weight = 1, int amount = 1) {
             Name = name;
             Type = type;
             SkinID = skinID;
+            Weight = weight < 0 ? .1f : weight;
             Amount = amount < 1 ? 1 : amount;
         }
         

@@ -15,6 +15,7 @@ namespace GameJAM.Services {
         public SpriteFont FontBig { get; private set; }
         public SpriteFont FontRegular { get; private set; }
         public SpriteFont FontSmall { get; private set; }
+        public SpriteFont FontTiny { get; private set; }
 
         public Texture2D Background { get; private set; }
         public TextureTileset TexHungerStatus { get; private set; }
@@ -29,7 +30,8 @@ namespace GameJAM.Services {
             FontBig = _content.Load<SpriteFont>(Path.Combine("Fonts", "big"));
             FontRegular = _content.Load<SpriteFont>(Path.Combine("Fonts", "regular"));
             FontSmall = _content.Load<SpriteFont>(Path.Combine("Fonts", "small"));
-            
+            FontTiny = _content.Load<SpriteFont>(Path.Combine("Fonts", "tiny"));
+
             Background = Texture2D.FromFile(Device, Path.Combine("Assets", "background.png"));
 
             TexGUIItemOutline = Texture2D.FromFile(Device, Path.Combine("Assets", "GUI", "item_border.png"));

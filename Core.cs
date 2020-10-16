@@ -6,6 +6,7 @@ using TBEngine.Utils;
 
 using CFG = GameJAM.Types.ConfigType;
 using GameJAM.Services;
+using Microsoft.Xna.Framework.Input;
 
 namespace GameJAM {
     public sealed class Core : Game {
@@ -37,6 +38,7 @@ namespace GameJAM {
 
             _config.Add(CFG.WindowWidth, "360");
             _config.Add(CFG.WindowHeight, "640");
+            _config.Add(CFG.KEY_Inventory, Keys.I.ToString( ));
             _config.LoadConfiguration( );
 
             _gameplay = new CoreView(_input, _content, _config, Exit);

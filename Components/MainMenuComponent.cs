@@ -54,6 +54,8 @@ namespace GameJAM.Components {
 
                 foreach (Button btn in _buttons)
                     btn.Display(_content);
+
+                DH.Text(_content.FontTiny, "Created by tbcode (C) 2020 - for Mini Jam 65 on itch.io", _resultScene.Width / 2, _resultScene.Height - 4, new Color(60, 60, 60), align: AlignType.CB);
             });
         }
 

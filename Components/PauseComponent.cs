@@ -19,29 +19,25 @@ namespace GameJAM.Components {
 
         private RenderTarget2D _resultScene;
 
-        private Action _onClose;
 
         private List<Button> _buttons;
 
-        public PauseComponent(ContentDataService content, InputService input, ConfigurationDataService config, Action onClose, Action onLeaveButton) {
+        public PauseComponent(ContentDataService content, InputService input, ConfigurationDataService config, Action onClose, Action onSettings, Action onTutorial, Action onResume) {
             _content = content;
             _input = input;
             _config = config;
-            _onClose = onClose;
 
             _resultScene = new RenderTarget2D(_content.Device, _config.WindowWidth, _config.WindowHeight);
 
             _buttons = new List<Button>( ) {
-                new Button( ) {
-                    Text = "Leave",
-                    ButtonAlign = AlignType.CB,
-                    X = _resultScene.Width / 2,
-                    Y = _resultScene.Height - 64,
-                    Width = _resultScene.Width - 64,
-                    Height = 32,
-                    OnClick = onLeaveButton,
-                    BackgroundColor = Color.Red
-                }
+                new Button( ) { Text = "End game", ButtonAlign = AlignType.CT, X = _resultScene.Width / 2, Y = _resultScene.Height / 2 + 160,
+                    Width = _resultScene.Width - 64, Height = 48, OnClick = onClose },
+                new Button( ) { Text = "Settings", ButtonAlign = AlignType.CT, X = _resultScene.Width / 2, Y = _resultScene.Height / 2 + 56,
+                    Width = _resultScene.Width - 64, Height = 48, OnClick = onSettings },
+                new Button( ) { Text = "How to play", ButtonAlign = AlignType.CT, X = _resultScene.Width / 2, Y = _resultScene.Height / 2,
+                    Width = _resultScene.Width - 64, Height = 48, OnClick = onTutorial },
+                new Button( ) { Text = "Resume", ButtonAlign = AlignType.CT, X = _resultScene.Width / 2, Y = _resultScene.Height / 2 - 56,
+                    Width = _resultScene.Width - 64, Height = 48, OnClick = onResume }
             };
         }
 

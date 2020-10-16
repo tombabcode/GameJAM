@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using TBEngine.Services;
 using TBEngine.Types;
 using DH = TBEngine.Utils.DisplayHelper;
+using CFG = GameJAM.Types.ConfigType;
 
 namespace GameJAM.Components {
     public sealed class InventoryComponent : IComponent {
@@ -52,7 +53,7 @@ namespace GameJAM.Components {
         }
 
         public void Update( ) {
-            if (_input.IsKeyPressedOnce(Keys.Escape))
+            if (_input.IsKeyPressedOnce(Keys.Escape) || _input.IsKeyPressedOnce(_config.KEY_Inventory))
                 _onClose?.Invoke( );
 
             _itemListElement.Update( );

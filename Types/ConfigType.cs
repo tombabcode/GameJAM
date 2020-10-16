@@ -4,7 +4,9 @@ namespace GameJAM.Types {
         WindowWidth,
         WindowHeight,
         ViewWidth,
-        ViewHeight
+        ViewHeight,
+
+        KEY_Inventory
 
     }
 }

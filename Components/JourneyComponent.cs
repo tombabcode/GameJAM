@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using GameJAM.Components.Elements;
 using GameJAM.Gameplay;
 using GameJAM.Services;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using TBEngine.Services;
@@ -23,14 +24,16 @@ namespace GameJAM.Components {
         private ItemListElement _itemListElement;
 
         private Action _onClose;
+        private Player _player;
 
         private Button _backButton;
 
-        public JourneyComponent(ContentDataService content, InputService input, ConfigurationDataService config, Action onClose) {
+        public JourneyComponent(ContentDataService content, InputService input, ConfigurationDataService config, Action onClose, Player player) {
             _content = content;
             _input = input;
             _config = config;
             _onClose = onClose;
+            _player = player;
 
             _resultScene = new RenderTarget2D(_content.Device, _config.WindowWidth, _config.WindowHeight);
 
@@ -45,9 +48,9 @@ namespace GameJAM.Components {
 
             _backButton = new Button( ) {
                 Text = "Back to campsite",
-                X = _config.WindowWidth / 2,
-                Y = _config.WindowHeight - 8,
-                Width = _config.WindowWidth - 16,
+                X = _resultScene.Width / 2,
+                Y = _resultScene.Height - 8,
+                Width = _resultScene.Width - 16,
                 Height = 32,
                 ButtonAlign = AlignType.CB,
                 OnClick = onClose
@@ -71,6 +74,9 @@ namespace GameJAM.Components {
                 DH.Text(_content.FontSmall, "I decided to take with me...", _resultScene.Width / 2, 34, align: AlignType.CT);
 
                 _itemListElement.Display( );
+
+                DH.Text(_content.FontSmall, $"{_itemListElement.ItemsWeight:0.0}kg / {_player.MaxWeight:0.0}kg", _resultScene.Width / 2, _resultScene.Height - 48,
+                    _itemListElement.ItemsWeight > _player.MaxWeight ? Color.Red : Color.DarkGray, AlignType.CB);
 
                 _backButton.Display(_content);
             });

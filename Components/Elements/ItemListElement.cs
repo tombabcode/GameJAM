@@ -3,6 +3,7 @@ using GameJAM.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.Linq;
 using TBEngine.Services;
 using TBEngine.Types;
 using DH = TBEngine.Utils.DisplayHelper;
@@ -16,14 +17,16 @@ namespace GameJAM.Components.Elements {
         private ContentDataService _content;
         private InputService _input;
 
-        private List<Item> _items;
+        private List<Item> _items = new List<Item>( );
 
         private RenderTarget2D _resultScene;
 
         private Item _hoveredItem;
 
+        public float ItemsWeight => _items.Sum(item => item.Weight * item.Amount);
+
         public ItemListElement(ContentDataService content, InputService input, List<Item> items, int width, int height) {
-            _items = items;
+            _items = items ?? new List<Item>( );
             _content = content;
             _input = input;
 

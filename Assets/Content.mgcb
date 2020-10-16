@@ -46,6 +46,13 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/small.spritefont
 
+#begin Fonts/tiny.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/tiny.spritefont
+
 #begin GUI/item_border.png
 /copy:GUI/item_border.png
 
