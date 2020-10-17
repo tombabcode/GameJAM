@@ -35,7 +35,7 @@ namespace GameJAM.Components.Elements {
             if (_isOver && input.IsLMBPressedOnce( )) OnClick?.Invoke( );
         }
 
-        public void Display(ContentDataService content) {
+        public void Display(ContentService content) {
             Vector2 position = AlignmentHelper.Position(ButtonAlign, X, Y, Width, Height);
             if (BackgroundColor != null) DH.Box((int)position.X, (int)position.Y, Width, Height, BackgroundColor ?? Color.White);
             DH.Text(_isOver ? content.FontRegular : content.FontSmall, Text, (int)position.X + Width / 2, (int)position.Y + Height / 2, TextColor, AlignType.CM);

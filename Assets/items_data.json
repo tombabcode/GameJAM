@@ -1,9 +1,10 @@
 ﻿{
 	"Items": [
-		{ "ID": "blackberry", "Name": "Blackberry", "Type": "Food", "SkinID": 0 },
-		{ "ID": "raspberry", "Name": "Raspberry", "Type": "Food", "SkinID": 1 },
-		{ "ID": "mushroom_leccinum", "Name": "Leccinum mushroom", "Type": "Food", "SkinID": 2 },
-		{ "ID": "mushroom_cantharellus", "Name": "Cantharellus mushroom", "Type": "Food", "SkinID": 3 },
-		{ "ID": "mushroom_amanita", "Name": "Amanita mushroom", "Type": "Food", "SkinID": 4 }
+		{ "ID": "blackberry", "Name": "Blackberry", "Type": "Food", "Weight": 39 },
+		{ "ID": "raspberry", "Name": "Raspberry", "Type": "Food", "Weight": 12 },
+		{ "ID": "mushroom_leccinum", "Name": "Leccinum mushroom", "Type": "Food", "Weight": 80 },
+		{ "ID": "mushroom_cantharellus", "Name": "Cantharellus mushroom", "Type": "Food" },
+		{ "ID": "mushroom_amanita", "Name": "Amanita mushroom", "Type": "Food" },
+		{ "ID": "water", "Name": "Water", "Type": "Fluid", "Weight": 0.1 }
 	]
 }

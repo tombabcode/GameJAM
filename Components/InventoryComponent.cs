@@ -16,9 +16,9 @@ namespace GameJAM.Components {
         public int AbsoluteX { get; set; }
         public int AbsoluteY { get; set; }
 
-        private ContentDataService _content;
+        private ContentService _content;
         private InputService _input;
-        private ConfigurationDataService _config;
+        private ConfigurationService _config;
 
         private RenderTarget2D _resultScene;
 
@@ -28,22 +28,22 @@ namespace GameJAM.Components {
 
         private Button _closeButton;
 
-        public InventoryComponent(ContentDataService content, InputService input, ConfigurationDataService config, Action onClose, List<Item> items) {
+        public InventoryComponent(ContentService content, InputService input, ConfigurationService config, Action onClose, List<Item> items) {
             _content = content;
             _input = input;
             _config = config;
             _onClose = onClose;
 
-            _resultScene = new RenderTarget2D(_content.Device, _config.WindowWidth, _config.WindowHeight);
+            _resultScene = new RenderTarget2D(_content.Device, _config.ViewWidth, _config.ViewHeight);
 
-            _itemListElement = new ItemListElement(_content, _input, items, _config.WindowWidth - 16, _config.WindowHeight - 56) {
+            _itemListElement = new ItemListElement(_content, _input, items, _config.ViewWidth - 16, _config.ViewHeight - 56) {
                 AbsoluteX = AbsoluteX + 16,
                 AbsoluteY = AbsoluteY + 48
             };
 
             _closeButton = new Button( ) {
                 Text = "X",
-                X = _config.WindowWidth - 4,
+                X = _config.ViewWidth - 4,
                 Y = 4,
                 ButtonAlign = AlignType.RT,
                 Width = 24,

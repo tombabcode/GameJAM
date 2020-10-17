@@ -11,7 +11,6 @@ namespace GameJAM.Models {
         public string Name { get; set; }
         public ItemType Type { get; set; }
         public float Weight { get; set; }
-        public int SkinID { get; set; }
     }
 
 }

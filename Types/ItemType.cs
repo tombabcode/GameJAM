@@ -2,7 +2,7 @@ namespace GameJAM.Types {
     public enum ItemType {
 
         Food,
-        Liquid,
+        Fluid,
         Container,
         Material,
         Other

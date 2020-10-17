@@ -4,6 +4,7 @@ using GameJAM.Components.Elements;
 using GameJAM.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using TBEngine.Services;
 using TBEngine.Types;
 using DH = TBEngine.Utils.DisplayHelper;
@@ -13,21 +14,23 @@ namespace GameJAM.Components {
         public int AbsoluteX { get; set; }
         public int AbsoluteY { get; set; }
 
-        private ContentDataService _content;
+        private ContentService _content;
         private InputService _input;
-        private ConfigurationDataService _config;
+        private ConfigurationService _config;
 
         private RenderTarget2D _resultScene;
 
-
         private List<Button> _buttons;
 
-        public PauseComponent(ContentDataService content, InputService input, ConfigurationDataService config, Action onClose, Action onSettings, Action onTutorial, Action onResume) {
+        private Action _onResume;
+
+        public PauseComponent(ContentService content, InputService input, ConfigurationService config, Action onClose, Action onSettings, Action onTutorial, Action onResume) {
             _content = content;
             _input = input;
             _config = config;
+            _onResume = onResume;
 
-            _resultScene = new RenderTarget2D(_content.Device, _config.WindowWidth, _config.WindowHeight);
+            _resultScene = new RenderTarget2D(_content.Device, _config.ViewWidth, _config.ViewHeight);
 
             _buttons = new List<Button>( ) {
                 new Button( ) { Text = "End game", ButtonAlign = AlignType.CT, X = _resultScene.Width / 2, Y = _resultScene.Height / 2 + 160,
@@ -42,6 +45,9 @@ namespace GameJAM.Components {
         }
 
         public void Update( ) {
+            if (_input.IsKeyPressedOnce(Keys.Escape))
+                _onResume?.Invoke( );
+
             foreach (Button btn in _buttons)
                 btn.Update(_input);
         }

@@ -14,9 +14,9 @@ namespace GameJAM {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _canvas;
 
-        private ContentDataService _content;
+        private ContentService _content;
         private InputService _input;
-        private ConfigurationDataService _config;
+        private ConfigurationService _config;
 
         private CoreView _gameplay;
         
@@ -32,21 +32,22 @@ namespace GameJAM {
 
             _canvas = new SpriteBatch(GraphicsDevice);
 
-            _config = new ConfigurationDataService( );
-            _content = new ContentDataService(Content, GraphicsDevice, _canvas);
-            _input = new InputService( );
+            _config = new ConfigurationService( );
+            _content = new ContentService(Content, GraphicsDevice, _canvas);
+            _input = new InputService(_config);
 
-            _config.Add(CFG.WindowWidth, "360");
-            _config.Add(CFG.WindowHeight, "640");
+            _config.Add(CFG.WindowScale, 1.5f.ToString( ));
             _config.Add(CFG.KEY_Inventory, Keys.I.ToString( ));
             _config.LoadConfiguration( );
+
+            _config.CheckScale(GraphicsDevice);
 
             _gameplay = new CoreView(_input, _content, _config, Exit);
 
             DisplayHelper.Content = _content;
 
-            _graphics.PreferredBackBufferWidth = _config.GetInt(CFG.WindowWidth);
-            _graphics.PreferredBackBufferHeight = _config.GetInt(CFG.WindowHeight);
+            _graphics.PreferredBackBufferWidth = _config.WindowWidth;
+            _graphics.PreferredBackBufferHeight = _config.WindowHeight;
             _graphics.ApplyChanges( );
 
             _content.LoadContent( );

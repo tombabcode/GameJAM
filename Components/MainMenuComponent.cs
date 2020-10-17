@@ -13,9 +13,9 @@ namespace GameJAM.Components {
         public int AbsoluteX { get; set; }
         public int AbsoluteY { get; set; }
 
-        private ContentDataService _content;
+        private ContentService _content;
         private InputService _input;
-        private ConfigurationDataService _config;
+        private ConfigurationService _config;
 
         private RenderTarget2D _resultScene;
 
@@ -23,13 +23,13 @@ namespace GameJAM.Components {
 
         private List<Button> _buttons;
 
-        public MainMenuComponent(ContentDataService content, InputService input, ConfigurationDataService config, Action onClose, Action onPlay, Action onLeave) {
+        public MainMenuComponent(ContentService content, InputService input, ConfigurationService config, Action onClose, Action onPlay, Action onLeave) {
             _content = content;
             _input = input;
             _config = config;
             _onClose = onClose;
 
-            _resultScene = new RenderTarget2D(_content.Device, _config.WindowWidth, _config.WindowHeight);
+            _resultScene = new RenderTarget2D(_content.Device, _config.ViewWidth, _config.ViewHeight);
 
             _buttons = new List<Button>( ) {
                 new Button( ) { Text = "Leave", ButtonAlign = AlignType.CT, X = _resultScene.Width / 2, Y = _resultScene.Height / 2 + 160, 

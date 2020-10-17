@@ -10,7 +10,7 @@ using TBEngine.Services;
 using TBEngine.Textures;
 
 namespace GameJAM.Services {
-    public sealed class ContentDataService : ContentService {
+    public sealed class ContentService : ContentServiceBase {
 
         public SpriteFont FontBig { get; private set; }
         public SpriteFont FontRegular { get; private set; }
@@ -24,7 +24,7 @@ namespace GameJAM.Services {
 
         public Dictionary<string, ItemObjectData> ItemsDefinitions { get; private set; }
         
-        public ContentDataService(ContentManager content, GraphicsDevice device, SpriteBatch canvas) : base(content, device, canvas) { }
+        public ContentService(ContentManager content, GraphicsDevice device, SpriteBatch canvas) : base(content, device, canvas) { }
 
         public override void LoadContent( ) {
             FontBig = _content.Load<SpriteFont>(Path.Combine("Fonts", "big"));
@@ -48,10 +48,10 @@ namespace GameJAM.Services {
                     ItemsDefinitions.Add(data.ID, data);
         }
 
-        public Item SpawnItem(string name) {
+        public Item SpawnItem(string name, int amount = 1) {
             if (ItemsDefinitions.ContainsKey(name.ToLower( ))) {
                 ItemObjectData data = ItemsDefinitions[name];
-                return new Item(data.Name, data.Type, 1);
+                return new Item(data.Name, data.Type, data.Weight, amount);
             }
 
             return null;

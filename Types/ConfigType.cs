@@ -1,10 +1,7 @@
 namespace GameJAM.Types {
     public enum ConfigType {
 
-        WindowWidth,
-        WindowHeight,
-        ViewWidth,
-        ViewHeight,
+        WindowScale,
 
         KEY_Inventory
 

@@ -15,9 +15,9 @@ namespace GameJAM.Components {
         public int AbsoluteX { get; set; }
         public int AbsoluteY { get; set; }
 
-        private ContentDataService _content;
+        private ContentService _content;
         private InputService _input;
-        private ConfigurationDataService _config;
+        private ConfigurationService _config;
 
         private RenderTarget2D _resultScene;
 
@@ -28,20 +28,23 @@ namespace GameJAM.Components {
 
         private Button _backButton;
 
-        public JourneyComponent(ContentDataService content, InputService input, ConfigurationDataService config, Action onClose, Player player) {
+        private bool _isOverweight;
+
+        public JourneyComponent(ContentService content, InputService input, ConfigurationService config, Action onClose, Player player) {
             _content = content;
             _input = input;
             _config = config;
             _onClose = onClose;
             _player = player;
 
-            _resultScene = new RenderTarget2D(_content.Device, _config.WindowWidth, _config.WindowHeight);
+            _resultScene = new RenderTarget2D(_content.Device, _config.ViewWidth, _config.ViewHeight);
 
             List<Item> itemsFound = new List<Item>( );
             itemsFound.Add(content.SpawnItem("blackberry"));
             itemsFound.Add(content.SpawnItem("mushroom_leccinum"));
+            itemsFound.Add(content.SpawnItem("water", 10));
 
-            _itemListElement = new ItemListElement(_content, _input, itemsFound, _config.WindowWidth - 16, _config.WindowHeight - 124) {
+            _itemListElement = new ItemListElement(_content, _input, itemsFound, _config.ViewWidth - 16, _config.ViewHeight - 124) {
                 AbsoluteX = AbsoluteX + 16,
                 AbsoluteY = AbsoluteY + 68
             };
@@ -53,7 +56,12 @@ namespace GameJAM.Components {
                 Width = _resultScene.Width - 16,
                 Height = 32,
                 ButtonAlign = AlignType.CB,
-                OnClick = onClose
+                OnClick = ( ) => {
+                    if (_itemListElement.SelectedItemsWeight > _player.MaxWeight)
+                        return;
+                    _player.AddItems(_itemListElement.SelectedItems); 
+                    onClose?.Invoke( ); 
+                }
             };
         }
 
@@ -63,6 +71,9 @@ namespace GameJAM.Components {
 
             _itemListElement.Update( );
             _backButton.Update(_input);
+
+            _isOverweight = _itemListElement.SelectedItemsWeight > _player.MaxWeight;
+            _backButton.TextColor = _isOverweight ? Color.Red : Color.White;
         }
 
         public void Render( ) {
@@ -75,8 +86,8 @@ namespace GameJAM.Components {
 
                 _itemListElement.Display( );
 
-                DH.Text(_content.FontSmall, $"{_itemListElement.ItemsWeight:0.0}kg / {_player.MaxWeight:0.0}kg", _resultScene.Width / 2, _resultScene.Height - 48,
-                    _itemListElement.ItemsWeight > _player.MaxWeight ? Color.Red : Color.DarkGray, AlignType.CB);
+                DH.Text(_content.FontSmall, $"{_itemListElement.SelectedItemsWeight:0.0}kg / {_player.MaxWeight:0.0}kg", _resultScene.Width / 2, _resultScene.Height - 48,
+                    _isOverweight ? Color.Red : Color.DarkGray, AlignType.CB);
 
                 _backButton.Display(_content);
             });
