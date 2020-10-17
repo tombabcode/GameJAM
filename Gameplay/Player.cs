@@ -1,3 +1,4 @@
+using GameJAM.Types;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,12 +19,20 @@ namespace GameJAM.Gameplay {
 
         public void AddItems(List<Item> items) {
             items.ForEach(item => {
-                Item inv = Inventory.FirstOrDefault(i => i.Name == item.Name);
+                Item inv = Inventory.FirstOrDefault(i => i.ID == item.ID);
                 if (inv != null)
                     inv.Add(item);
                 else
                     Inventory.Add(item);
             });
+        }
+
+        public void ChangeAttribute(AttributeType type, float value) {
+            switch (type) {
+                case AttributeType.Hunger: Hunger = Hunger + value > 1 ? Hunger = 1 : Hunger + value < 0 ? Hunger = 0 : Hunger + value; break;
+                case AttributeType.Thirst: Thirst = Thirst + value > 1 ? Thirst = 1 : Thirst + value < 0 ? Thirst = 0 : Thirst + value; break;
+                case AttributeType.Tiredness: Tiredness = Tiredness + value > 1 ? Tiredness = 1 : Tiredness + value < 0 ? Tiredness = 0 : Tiredness + value; break;
+            }
         }
 
     }

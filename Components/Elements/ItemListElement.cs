@@ -3,17 +3,20 @@ using GameJAM.Services;
 using GameJAM.Types;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TBEngine.Services;
 using TBEngine.Types;
 using DH = TBEngine.Utils.DisplayHelper;
+using LANG = TBEngine.Utils.TranslationService;
 
 namespace GameJAM.Components.Elements {
     public sealed class ItemListElement : IComponent {
 
         public int AbsoluteX { get; set; }
         public int AbsoluteY { get; set; }
+        public bool IsSelectingAvailable { get; set; } = true;
 
         private ContentService _content;
         private InputService _input;
@@ -24,6 +27,14 @@ namespace GameJAM.Components.Elements {
         private RenderTarget2D _resultScene;
 
         private Item _hoveredItem;
+
+        public Action OnHover { private get; set; }
+        public Action<Item> OnRMBClick { private get; set; }
+
+        private bool _hasScrollbar => _totalSize > _resultScene.Height;
+        private int _totalSize => _items.Count * 24;
+        private float _scrollOffset = 0;
+        private int _viewableElements => (int)Math.Floor(_resultScene.Height / 24f);
 
         public float SelectedItemsWeight => SelectedItems.Sum(item => item.Weight * item.Amount);
 
@@ -40,22 +51,34 @@ namespace GameJAM.Components.Elements {
             _hoveredItem = null;
 
             for (int i = 0; i < _items.Count; i++)
-                if (_input.IsOver(AbsoluteX, AbsoluteY + i * 24, _resultScene.Width, 24)) {
+                if (_input.IsOver(AbsoluteX, AbsoluteY + i * 24 - _scrollOffset, _resultScene.Width, 24)) {
                     _hoveredItem = _items[i];
                     break;
                 }
 
-            if (_hoveredItem != null && _input.IsLMBPressedOnce( ))
-                if (SelectedItems.Contains(_hoveredItem))
-                    SelectedItems.Remove(_hoveredItem);
-                else
-                    SelectedItems.Add(_hoveredItem);
+            if (_hoveredItem != null) {
+                if (_input.IsRMBPressedOnce( )) OnRMBClick?.Invoke(_hoveredItem);
+
+                if (IsSelectingAvailable && _input.IsLMBPressedOnce( )) {
+                    if (SelectedItems.Contains(_hoveredItem))
+                        SelectedItems.Remove(_hoveredItem);
+                    else
+                        SelectedItems.Add(_hoveredItem);
+                }
+            }
+
+            if (_totalSize > _resultScene.Height) {
+                if (_input.HasScrolledUp( )) _scrollOffset -= 24;
+                if (_input.HasScrolledDown( )) _scrollOffset += 24;
+                if (_scrollOffset < 0) _scrollOffset = 0;
+                if (_scrollOffset + _resultScene.Height > _totalSize) _scrollOffset = _totalSize - _resultScene.Height;
+            }
         }
 
         public void Render( ) {
             DH.RenderScene(_resultScene, ( ) => {
                 if (_items.Count == 0) {
-                    DH.Text(_content.FontRegular, "Inventory is empty", _resultScene.Width / 2, _resultScene.Height / 2, align: AlignType.CM);
+                    DH.Text(_content.FontRegular, "inventory_empty", _resultScene.Width / 2, _resultScene.Height / 2, align: AlignType.CM);
                     return;
                 }
 
@@ -71,10 +94,15 @@ namespace GameJAM.Components.Elements {
                     else outlineColor = Color.White * .4f;
 
                     string amount = item.Type == ItemType.Fluid ? $" ({(item.Amount / 10f):0.0} l)" : (item.Amount > 1 ? $" ({item.Amount}x)" : "");
-                    string weight = $"{(item.Weight * item.Amount):0.0}" + (item.Type == ItemType.Fluid ? " l" : " kg");
+                    string weight = $"{(item.Weight * item.Amount):0.00}" + (item.Type == ItemType.Fluid ? " l" : " kg");
 
-                    DH.Text(_content.FontSmall, item.Name + amount, 12, i * 24 + 12, outlineColor, AlignType.LM);
-                    DH.Text(_content.FontTiny, weight, _resultScene.Width - 12, i * 24 + 12, outlineColor, AlignType.RM);
+                    DH.Text(_content.FontSmall, LANG.Get(item.ID) + amount, 8, i * 24 + 12 - _scrollOffset, false, outlineColor, AlignType.LM);
+                    DH.Text(_content.FontTiny, weight, _resultScene.Width - (_hasScrollbar ? 16 : 8), i * 24 + 12 - _scrollOffset, false, outlineColor, AlignType.RM);
+
+                    if (_hasScrollbar) {
+                        float scrollbarHeight = (_viewableElements / (float)_items.Count) * _resultScene.Height;
+                        DH.Box(_resultScene.Width - 8, (int)((_scrollOffset / (_totalSize - _resultScene.Height)) * (_resultScene.Height - scrollbarHeight)), 2, (int)scrollbarHeight, color: Color.Gray);
+                    }
                 }
             });
         }

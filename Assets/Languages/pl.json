@@ -1,0 +1,37 @@
+﻿{
+	"Language": "pl",
+	"LanguageName": "Polski",
+	"Data": {
+		"Items": {
+			"blackberry": "Jeżyny",
+			"raspberry": "Maliny",
+			"mushroom_leccinum": "Grzyb koźlarz",
+			"mushroom_cantharellus": "Grzyb kurka",
+			"mushroom_amanita": "Muchomor",
+			"water": "Woda"
+		},
+		"GUI": {
+			"play": "Graj",
+			"tutorial": "Jak grać",
+			"settings": "Ustawienia",
+			"end_game": "Zakończ grę",
+			"back": "Wróć",
+			"leave": "Wyjdź",
+			"inventory": "Plecak",
+			"inventory_empty": "Świeci pustkami...",
+			"wander": "Wędrówka",
+			"rest": "Śpij",
+			"back_home": "Wróć do obozowiska",
+			"copyright": "Stworzone przez tbcode (C) 2020 - dla Mini Jam 65 na itch.io",
+			"hunger": "Głód",
+			"thirst": "Pragnienie",
+			"tiredness": "Zmęczenie",
+			"scale": "Rozmiar okna"
+		},
+		"Sentences": {
+			"journey_1": "Znalazłem kilka rzeczy podczas wędrówki.",
+			"journey_2": "Zdecydowałem się wziąć ze mną...",
+			"intro_0": "Zaczynasz swoją przygodę..."
+		}
+	}
+}

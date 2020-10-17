@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using TBEngine.Services;
 using TBEngine.Types;
 using DH = TBEngine.Utils.DisplayHelper;
+using LANG = TBEngine.Utils.TranslationService;
 
 namespace GameJAM.Components {
     public sealed class PauseComponent : IComponent {
@@ -33,13 +34,13 @@ namespace GameJAM.Components {
             _resultScene = new RenderTarget2D(_content.Device, _config.ViewWidth, _config.ViewHeight);
 
             _buttons = new List<Button>( ) {
-                new Button( ) { Text = "End game", ButtonAlign = AlignType.CT, X = _resultScene.Width / 2, Y = _resultScene.Height / 2 + 160,
+                new Button( ) { Text = "end_game", ButtonAlign = AlignType.CT, X = _resultScene.Width / 2, Y = _resultScene.Height / 2 + 160,
                     Width = _resultScene.Width - 64, Height = 48, OnClick = onClose },
-                new Button( ) { Text = "Settings", ButtonAlign = AlignType.CT, X = _resultScene.Width / 2, Y = _resultScene.Height / 2 + 56,
+                new Button( ) { Text = "settings", ButtonAlign = AlignType.CT, X = _resultScene.Width / 2, Y = _resultScene.Height / 2 + 56,
                     Width = _resultScene.Width - 64, Height = 48, OnClick = onSettings },
-                new Button( ) { Text = "How to play", ButtonAlign = AlignType.CT, X = _resultScene.Width / 2, Y = _resultScene.Height / 2,
+                new Button( ) { Text = "tutorial", ButtonAlign = AlignType.CT, X = _resultScene.Width / 2, Y = _resultScene.Height / 2,
                     Width = _resultScene.Width - 64, Height = 48, OnClick = onTutorial },
-                new Button( ) { Text = "Resume", ButtonAlign = AlignType.CT, X = _resultScene.Width / 2, Y = _resultScene.Height / 2 - 56,
+                new Button( ) { Text = "resume", ButtonAlign = AlignType.CT, X = _resultScene.Width / 2, Y = _resultScene.Height / 2 - 56,
                     Width = _resultScene.Width - 64, Height = 48, OnClick = onResume }
             };
         }

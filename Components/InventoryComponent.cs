@@ -28,7 +28,7 @@ namespace GameJAM.Components {
 
         private Button _closeButton;
 
-        public InventoryComponent(ContentService content, InputService input, ConfigurationService config, Action onClose, List<Item> items) {
+        public InventoryComponent(ContentService content, InputService input, ConfigurationService config, Action onClose, Player player) {
             _content = content;
             _input = input;
             _config = config;
@@ -36,13 +36,16 @@ namespace GameJAM.Components {
 
             _resultScene = new RenderTarget2D(_content.Device, _config.ViewWidth, _config.ViewHeight);
 
-            _itemListElement = new ItemListElement(_content, _input, items, _config.ViewWidth - 16, _config.ViewHeight - 56) {
-                AbsoluteX = AbsoluteX + 16,
-                AbsoluteY = AbsoluteY + 48
+            _itemListElement = new ItemListElement(_content, _input, player.Inventory, _config.ViewWidth - 16, _config.ViewHeight - 96) {
+                AbsoluteX = AbsoluteX + 8,
+                AbsoluteY = AbsoluteY + 88,
+                IsSelectingAvailable = false,
+                OnRMBClick = (Item actionItem) => actionItem.Use(player)
             };
 
             _closeButton = new Button( ) {
                 Text = "X",
+                TextTranslate = false,
                 X = _config.ViewWidth - 4,
                 Y = 4,
                 ButtonAlign = AlignType.RT,
@@ -65,7 +68,7 @@ namespace GameJAM.Components {
 
             DH.RenderScene(_resultScene, ( ) => {
                 DH.TransparentBox(0, 0, _resultScene.Width, _resultScene.Height, .75f);
-                DH.Text(_content.FontSmall, "Inventory", _resultScene.Width / 2, 20, align: AlignType.CM);
+                DH.Text(_content.FontSmall, "inventory", _resultScene.Width / 2, 64, align: AlignType.CM);
 
                 _closeButton.Display(_content);
                 _itemListElement.Display( );

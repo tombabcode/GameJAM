@@ -8,9 +8,15 @@ namespace GameJAM.Models {
 
     public sealed class ItemObjectData {
         public string ID { get; set; }
-        public string Name { get; set; }
         public ItemType Type { get; set; }
         public float Weight { get; set; }
+        public List<ItemEffectData> Effects { get; set; } = new List<ItemEffectData>( );
+    }
+
+    public sealed class ItemEffectData {
+        public ItemEffectType? Type { get; set; }
+        public AttributeType? Attribute { get; set; }
+        public float? Value { get; set; }
     }
 
 }

@@ -7,6 +7,7 @@ using TBEngine.Utils;
 using CFG = GameJAM.Types.ConfigType;
 using GameJAM.Services;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace GameJAM {
     public sealed class Core : Game {
@@ -24,7 +25,10 @@ namespace GameJAM {
             _graphics = new GraphicsDeviceManager(this);
             
             Content.RootDirectory = "Assets";
-            IsMouseVisible = true;
+            IsMouseVisible = false;
+            Window.Title = "TBCODE | Mini Jam 65 itch.io";
+            Window.AllowUserResizing = false;
+            Window.AllowAltF4 = false;
         }
 
         protected override void Initialize( ) {
@@ -33,17 +37,18 @@ namespace GameJAM {
             _canvas = new SpriteBatch(GraphicsDevice);
 
             _config = new ConfigurationService( );
-            _content = new ContentService(Content, GraphicsDevice, _canvas);
+            _content = new ContentService(_graphics, Content, GraphicsDevice, _canvas);
             _input = new InputService(_config);
 
             _config.Add(CFG.WindowScale, 1.5f.ToString( ));
             _config.Add(CFG.KEY_Inventory, Keys.I.ToString( ));
+            _config.Add(CFG.Language, "pl");
             _config.LoadConfiguration( );
 
             _config.CheckScale(GraphicsDevice);
 
-            _gameplay = new CoreView(_input, _content, _config, Exit);
-
+            TranslationService.LoadTranslations(_config.Language);
+            RandomService.Random = new Random( );
             DisplayHelper.Content = _content;
 
             _graphics.PreferredBackBufferWidth = _config.WindowWidth;
@@ -51,6 +56,8 @@ namespace GameJAM {
             _graphics.ApplyChanges( );
 
             _content.LoadContent( );
+
+            _gameplay = new CoreView(_input, _content, _config, Exit);
         }
 
         protected override void Update(GameTime gameTime) {

@@ -15,6 +15,9 @@ namespace GameJAM {
         public int WindowWidth => (int)(WIDTH * Scale);
         public int WindowHeight => (int)(HEIGHT * Scale);
         public float Scale => GetFloat(CFG.WindowScale);
+        public float MaxScale;
+
+        public string Language => Get(CFG.Language);
 
         public Keys KEY_Inventory => Enum.TryParse(Get(CFG.KEY_Inventory), out Keys result) ? result : default;
 
@@ -25,6 +28,8 @@ namespace GameJAM {
             float maxWidthScale = (device.Adapter.CurrentDisplayMode.Width / (float)WIDTH);
             float maxHeightScale = (device.Adapter.CurrentDisplayMode.Height / (float)HEIGHT);
             float scale = GetFloat(CFG.WindowScale);
+
+            MaxScale = maxWidthScale >= maxHeightScale ? maxWidthScale : maxHeightScale;
         
             if (scale < 1) Configuration[CFG.WindowScale.ToString( )] = 1.0f.ToString( ); else
             if (maxWidthScale >= maxHeightScale && scale > maxWidthScale) Configuration[CFG.WindowScale.ToString( )] = maxWidthScale.ToString( ); else

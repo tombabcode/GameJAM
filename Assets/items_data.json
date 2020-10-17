@@ -1,10 +1,47 @@
 ﻿{
 	"Items": [
-		{ "ID": "blackberry", "Name": "Blackberry", "Type": "Food", "Weight": 39 },
-		{ "ID": "raspberry", "Name": "Raspberry", "Type": "Food", "Weight": 12 },
-		{ "ID": "mushroom_leccinum", "Name": "Leccinum mushroom", "Type": "Food", "Weight": 80 },
-		{ "ID": "mushroom_cantharellus", "Name": "Cantharellus mushroom", "Type": "Food" },
-		{ "ID": "mushroom_amanita", "Name": "Amanita mushroom", "Type": "Food" },
-		{ "ID": "water", "Name": "Water", "Type": "Fluid", "Weight": 0.1 }
+		{ 
+			"ID": "blackberry", 
+			"Type": "Food", 
+			"Weight": 0.02, 
+			"Effects": [
+				{ "Type": "AttributeSingleUse", "Attribute": "Hunger", "Value": -0.01 },
+				{ "Type": "AttributeSingleUse", "Attribute": "Thirst", "Value": -0.005 }
+			]
+		}, { 
+			"ID": "raspberry", 
+			"Type": "Food", 
+			"Weight": 0.01,
+			"Effects": [
+				{ "Type": "AttributeSingleUse", "Attribute": "Hunger", "Value": -0.01 },
+				{ "Type": "AttributeSingleUse", "Attribute": "Thirst", "Value": -0.005 }
+			]
+		}, { 
+			"ID": "mushroom_leccinum", 
+			"Type": "Food", 
+			"Weight": 0.08,
+			"Effects": [
+				{ "Type": "AttributeSingleUse", "Attribute": "Hunger", "Value": -0.05 }
+			]
+		}, { 
+			"ID": "mushroom_cantharellus", 
+			"Type": "Food",
+			"Weight": 0.05,
+			"Effects": [
+				{ "Type": "AttributeSingleUse", "Attribute": "Hunger", "Value": -0.05 }
+			] 
+		}, { 
+			"ID": "mushroom_amanita", 
+			"Type": "Food",
+			"Weight": 0.1
+		}, { 
+			"ID": "water", 
+			"Name": "Water", 
+			"Type": "Fluid", 
+			"Weight": 0.1,
+			"Effects": [
+				{ "Type": "AttributeSingleUse", "Attribute": "Thirst", "Value": -0.1 }
+			] 
+		}
 	]
 }

@@ -1,0 +1,37 @@
+﻿{
+	"Language": "en",
+	"LanguageName": "English",
+	"Data": {
+		"Items": {
+			"blackberry": "Blackberry",
+			"raspberry": "Raspberry",
+			"mushroom_leccinum": "Mushroom_leccinum",
+			"mushroom_cantharellus": "Mushroom_cantharellus",
+			"mushroom_amanita": "Mushroom_amanita",
+			"water": "Water"
+		},
+		"GUI": {
+			"play": "Play",
+			"tutorial": "How to play",
+			"settings": "Settings",
+			"end_game": "End game",
+			"back": "Back",
+			"leave": "Leave",
+			"inventory": "Inventory",
+			"inventory_empty": "There's nothing here",
+			"wander": "Wander",
+			"rest": "Rest",
+			"back_home": "Back to campsite",
+			"copyright": "Created by tbcode (C) 2020 - for Mini Jam 65 on itch.io",
+			"hunger": "Hunger",
+			"thirst": "Thirst",
+			"tiredness": "Tiredness",
+			"scale": "Window scale",
+		},
+		"Sentences": {
+			"journey_1": "During my wanderings I found few things.",
+			"journey_2": "I decided to take with me...",
+			"intro_0": "You begin your journey..."
+		}
+	}
+}

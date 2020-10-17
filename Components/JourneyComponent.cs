@@ -44,13 +44,13 @@ namespace GameJAM.Components {
             itemsFound.Add(content.SpawnItem("mushroom_leccinum"));
             itemsFound.Add(content.SpawnItem("water", 10));
 
-            _itemListElement = new ItemListElement(_content, _input, itemsFound, _config.ViewWidth - 16, _config.ViewHeight - 124) {
-                AbsoluteX = AbsoluteX + 16,
-                AbsoluteY = AbsoluteY + 68
+            _itemListElement = new ItemListElement(_content, _input, itemsFound, _config.ViewWidth - 16, _config.ViewHeight - 196) {
+                AbsoluteX = AbsoluteX + 8,
+                AbsoluteY = AbsoluteY + 108
             };
 
             _backButton = new Button( ) {
-                Text = "Back to campsite",
+                Text = "back_home",
                 X = _resultScene.Width / 2,
                 Y = _resultScene.Height - 8,
                 Width = _resultScene.Width - 16,
@@ -81,13 +81,13 @@ namespace GameJAM.Components {
 
             DH.RenderScene(_resultScene, () => {
                 DH.TransparentBox(0, 0, _resultScene.Width, _resultScene.Height, .75f);
-                DH.Text(_content.FontSmall, "During my wanderings I found few things.", _resultScene.Width / 2, 12, align: AlignType.CT);
-                DH.Text(_content.FontSmall, "I decided to take with me...", _resultScene.Width / 2, 34, align: AlignType.CT);
+                DH.Text(_content.FontSmall, "journey_1", _resultScene.Width / 2, 52, align: AlignType.CT);
+                DH.Text(_content.FontSmall, "journey_2", _resultScene.Width / 2, 74, align: AlignType.CT);
 
                 _itemListElement.Display( );
 
                 DH.Text(_content.FontSmall, $"{_itemListElement.SelectedItemsWeight:0.0}kg / {_player.MaxWeight:0.0}kg", _resultScene.Width / 2, _resultScene.Height - 48,
-                    _isOverweight ? Color.Red : Color.DarkGray, AlignType.CB);
+                    false, _isOverweight ? Color.Red : Color.DarkGray, AlignType.CB);
 
                 _backButton.Display(_content);
             });

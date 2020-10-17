@@ -16,6 +16,27 @@
 #begin background.png
 /copy:background.png
 
+#begin background.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:background.png
+
+#begin background_sky.png
+/copy:background_sky.png
+
+#begin background_stars.png
+/copy:background_stars.png
+
+#begin cursor.png
+/copy:cursor.png
+
 #begin Fonts/Bellota-Bold.otf
 /copy:Fonts/Bellota-Bold.otf
 
@@ -53,8 +74,8 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/tiny.spritefont
 
-#begin GUI/item_border.png
-/copy:GUI/item_border.png
+#begin GUI/border.png
+/copy:GUI/border.png
 
 #begin hunger.png
 /copy:hunger.png
