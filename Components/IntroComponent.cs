@@ -36,7 +36,7 @@ namespace GameJAM.Components {
         }
 
         public void Update( ) {
-            if (_input.IsKeyPressedOnce(Keys.Space))
+            if (_input.IsAnyKeyPressedOnce( ) && _state == 0)
                 _state++;
 
             if (_state == 1)
@@ -46,7 +46,9 @@ namespace GameJAM.Components {
         public void Render( ) {
             DH.RenderScene(_resultScene, ( ) => {
                 if (_state >= 0)
-                    DH.Text(_content.FontSmall, "intro_0", _resultScene.Width / 2, _resultScene.Height - 16, align: AlignType.CB);
+                    DH.Text(_content.FontSmall, "intro_0", _resultScene.Width / 2, _resultScene.Height /2, align: AlignType.CM);
+
+                DH.Text(_content.FontTiny, "continue", _resultScene.Width / 2, _resultScene.Height - 8, align: AlignType.CB);
             });
         }
 

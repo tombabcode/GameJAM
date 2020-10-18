@@ -28,7 +28,7 @@ namespace GameJAM.Components {
 
         private Button _closeButton;
 
-        public InventoryComponent(ContentService content, InputService input, ConfigurationService config, Action onClose, Player player) {
+        public InventoryComponent(ContentService content, InputService input, ConfigurationService config, Action onClose, Action<Item> onItemHover, Player player) {
             _content = content;
             _input = input;
             _config = config;
@@ -40,7 +40,8 @@ namespace GameJAM.Components {
                 AbsoluteX = AbsoluteX + 8,
                 AbsoluteY = AbsoluteY + 88,
                 IsSelectingAvailable = false,
-                OnRMBClick = (Item actionItem) => actionItem.Use(player)
+                OnRMBClick = (Item actionItem) => actionItem.Use(player),
+                OnHover = (Item item) => onItemHover?.Invoke(item)
             };
 
             _closeButton = new Button( ) {

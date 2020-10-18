@@ -24,21 +24,29 @@ namespace GameJAM.Components {
         private RenderTarget2D _resultScene;
 
         private Action _onClose;
+        private long _score;
 
-        public DeadScreenComponent(ContentService content, InputService input, ConfigurationService config, Action onClose) {
+        public DeadScreenComponent(ContentService content, InputService input, ConfigurationService config, Action onClose, long score) {
             _content = content;
             _input = input;
             _config = config;
-
+            _score = score;
+            _onClose = onClose;
             _resultScene = new RenderTarget2D(_content.Device, _config.ViewWidth, _config.ViewHeight);
         }
 
         public void Update( ) {
+            if (_input.IsAnyKeyPressedOnce( ))
+                _onClose?.Invoke( );
         }
 
         public void Render( ) {
             DH.RenderScene(_resultScene, ( ) => {
                 DH.Box(0, 0, _resultScene.Width, _resultScene.Height, color: Color.Black);
+                DH.Text(_content.FontTiny, "continue", _resultScene.Width / 2, _resultScene.Height - 8, align: AlignType.CB);
+
+                DH.Text(_content.FontBig, "dead_0", _resultScene.Width / 2, _resultScene.Height / 2, align: AlignType.CM);
+                DH.Text(_content.FontSmall, $"{_score:00000000}", _resultScene.Width / 2, _resultScene.Height / 2 + 48, translate: false, align: AlignType.CM);
             });
         }
 

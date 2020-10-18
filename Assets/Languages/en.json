@@ -27,11 +27,31 @@
 			"thirst": "Thirst",
 			"tiredness": "Tiredness",
 			"scale": "Window scale",
+			"polish": "Polski",
+			"english": "English"
 		},
 		"Sentences": {
 			"journey_1": "During my wanderings I found few things.",
 			"journey_2": "I decided to take with me...",
-			"intro_0": "You begin your journey..."
+			"intro_0": "You begin your journey...",
+			"dead_0": "Rest in peace...",
+			"tutorial_0": "You've got three attributes",
+			"tutorial_1": "THIRST | HUNGER | TIREDNESS",
+			"tutorial_2": "Keep them low!",
+			"tutorial_3": "Any of them on 100%",
+			"tutorial_4": "Equals DEATH",
+			"tutorial_5": "Rest decrease tiredness, but increases other",
+			"tutorial_6": "Tiredness -5-25%, Thirst +10-25%, Hunger +10-35%",
+			"tutorial_7": "Wander allows you to search for foood",
+			"tutorial_8": "Tiredness +10-50%, +Items",
+			"tutorial_9": "Inside inventory you see items from wandering",
+			"tutorial_10": "You can use them for reducing hunger or thirst",
+			"tutorial_11": "If you hover item, you'll see the changes",
+			"tutorial_12": "Right click (RMB) to use them",
+			"tutorial_13": "You can only lift 40kg, so you have to decide",
+			"tutorial_14": "Which items you'll take with you",
+			"tutorial_15": "Choose wisely!",
+			"continue": "Press any key to continue"
 		}
 	}
 }

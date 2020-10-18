@@ -27,8 +27,9 @@ namespace GameJAM.Components.Elements {
         private RenderTarget2D _resultScene;
 
         private Item _hoveredItem;
+        private Item _lastHovered;
 
-        public Action OnHover { private get; set; }
+        public Action<Item> OnHover { private get; set; }
         public Action<Item> OnRMBClick { private get; set; }
 
         private bool _hasScrollbar => _totalSize > _resultScene.Height;
@@ -50,11 +51,12 @@ namespace GameJAM.Components.Elements {
         public void Update( ) {
             _hoveredItem = null;
 
-            for (int i = 0; i < _items.Count; i++)
+            for (int i = 0; i < _items.Count; i++) {
                 if (_input.IsOver(AbsoluteX, AbsoluteY + i * 24 - _scrollOffset, _resultScene.Width, 24)) {
                     _hoveredItem = _items[i];
                     break;
                 }
+            }
 
             if (_hoveredItem != null) {
                 if (_input.IsRMBPressedOnce( )) OnRMBClick?.Invoke(_hoveredItem);
@@ -65,6 +67,11 @@ namespace GameJAM.Components.Elements {
                     else
                         SelectedItems.Add(_hoveredItem);
                 }
+            }
+
+            if (_lastHovered != _hoveredItem) {
+                OnHover?.Invoke(_hoveredItem);
+                _lastHovered = _hoveredItem;
             }
 
             if (_totalSize > _resultScene.Height) {

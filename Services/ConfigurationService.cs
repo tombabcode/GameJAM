@@ -29,11 +29,10 @@ namespace GameJAM {
             float maxHeightScale = (device.Adapter.CurrentDisplayMode.Height / (float)HEIGHT);
             float scale = GetFloat(CFG.WindowScale);
 
-            MaxScale = maxWidthScale >= maxHeightScale ? maxWidthScale : maxHeightScale;
+            MaxScale = maxWidthScale <= maxHeightScale ? maxWidthScale : maxHeightScale;
+            MaxScale = MaxScale < 1 ? 1 : MaxScale;
         
-            if (scale < 1) Configuration[CFG.WindowScale.ToString( )] = 1.0f.ToString( ); else
-            if (maxWidthScale >= maxHeightScale && scale > maxWidthScale) Configuration[CFG.WindowScale.ToString( )] = maxWidthScale.ToString( ); else
-            if (maxHeightScale > maxWidthScale && scale > maxHeightScale) Configuration[CFG.WindowScale.ToString( )] = maxHeightScale.ToString( );
+            Configuration[CFG.WindowScale.ToString( )] = scale < 1 ? "1" : scale > MaxScale ? MaxScale.ToString( ) : scale.ToString( );
         }
 
     }

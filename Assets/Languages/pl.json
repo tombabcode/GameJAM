@@ -26,12 +26,32 @@
 			"hunger": "Głód",
 			"thirst": "Pragnienie",
 			"tiredness": "Zmęczenie",
-			"scale": "Rozmiar okna"
+			"scale": "Rozmiar okna",
+			"polish": "Polski",
+			"english": "English"
 		},
 		"Sentences": {
 			"journey_1": "Znalazłem kilka rzeczy podczas wędrówki.",
 			"journey_2": "Zdecydowałem się wziąć ze mną...",
-			"intro_0": "Zaczynasz swoją przygodę..."
+			"intro_0": "Zaczynasz swoją przygodę...",
+			"dead_0": "Nie starczyło Ci sił...",
+			"tutorial_0": "Posiadasz trzy atrybuty",
+			"tutorial_1": "PRAGNIENIE | GŁÓD | ZMĘCZENIE",
+			"tutorial_2": "Utrzymuj je nisko!",
+			"tutorial_3": "Jakiekolwiek na poziomie 100%",
+			"tutorial_4": "Oznacza ŚMIERĆ",
+			"tutorial_5": "Odpoczynek zmniejsza zmęczenie",
+			"tutorial_6": "Zmęczenie -5-25%, Pragnienie +10-25%, Głód +10-35%",
+			"tutorial_7": "Wędrówka pozwala na szukanie pożywienia",
+			"tutorial_8": "Zmęczenie +10-50%, +Przedmioty",
+			"tutorial_9": "Wewnątrz plecaka są zebrane przedmioty",
+			"tutorial_10": "Użyj ich do redukcji głodu i pragnienia",
+			"tutorial_11": "Najedź na rzecz, aby zobaczyć zmiany",
+			"tutorial_12": "Kliknij prawy przycisk myszy (RMB) aby użyć",
+			"tutorial_13": "Możesz podnięść maks. 40kg, wybieraj",
+			"tutorial_14": "które przedmioty ze sobą zabierzesz",
+			"tutorial_15": "Wybieraj mądrze",
+			"continue": "Kliknij dowolny klawisz, aby przejść dalej"
 		}
 	}
 }

@@ -30,7 +30,7 @@ namespace GameJAM.Components {
 
         private bool _isOverweight;
 
-        public JourneyComponent(ContentService content, InputService input, ConfigurationService config, Action onClose, Player player) {
+        public JourneyComponent(ContentService content, InputService input, ConfigurationService config, Action onClose, Action<Item> onItemHover, Player player) {
             _content = content;
             _input = input;
             _config = config;
@@ -46,7 +46,8 @@ namespace GameJAM.Components {
 
             _itemListElement = new ItemListElement(_content, _input, itemsFound, _config.ViewWidth - 16, _config.ViewHeight - 196) {
                 AbsoluteX = AbsoluteX + 8,
-                AbsoluteY = AbsoluteY + 108
+                AbsoluteY = AbsoluteY + 108,
+                OnHover = (Item hovered) => onItemHover?.Invoke(hovered)
             };
 
             _backButton = new Button( ) {
@@ -66,8 +67,10 @@ namespace GameJAM.Components {
         }
 
         public void Update( ) {
-            if (_input.IsKeyPressedOnce(Keys.Escape))
+            if (_input.IsKeyPressedOnce(Keys.Escape) && _itemListElement.SelectedItemsWeight <= _player.MaxWeight) { 
+                _player.AddItems(_itemListElement.SelectedItems);
                 _onClose?.Invoke( );
+            }
 
             _itemListElement.Update( );
             _backButton.Update(_input);

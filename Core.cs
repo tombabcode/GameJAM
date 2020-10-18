@@ -40,9 +40,9 @@ namespace GameJAM {
             _content = new ContentService(_graphics, Content, GraphicsDevice, _canvas);
             _input = new InputService(_config);
 
-            _config.Add(CFG.WindowScale, 1.5f.ToString( ));
+            _config.Add(CFG.WindowScale, 1.0f.ToString( ));
             _config.Add(CFG.KEY_Inventory, Keys.I.ToString( ));
-            _config.Add(CFG.Language, "pl");
+            _config.Add(CFG.Language, "en");
             _config.LoadConfiguration( );
 
             _config.CheckScale(GraphicsDevice);

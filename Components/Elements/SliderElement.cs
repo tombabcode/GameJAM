@@ -20,9 +20,11 @@ namespace GameJAM.Components.Elements {
         private Action<float> _onValueChange;
         private float _value;
 
-        public SliderElement(ContentService content, InputService input, Action<float> onValueChange) {
+        public SliderElement(ContentService content, InputService input, float initValue, Action<float> onValueChange) {
             _content = content;
             _input = input;
+
+            _value = initValue;
 
             _onValueChange = onValueChange;
         }
@@ -31,7 +33,7 @@ namespace GameJAM.Components.Elements {
             if (_input.IsOver(AbsoluteX - 120, AbsoluteY - 16, 240, 20) && _input.IsLMBPressed( )) {
                 _value = (_input.MouseX - (AbsoluteX - 120)) / 240f;
                 _value = _value < 0 ? 0 : _value > 1 ? 1 : _value;
-                _onValueChange(_value * (Maximum - Minimum) + Minimum);
+                _onValueChange(_value);
             }
         }
 

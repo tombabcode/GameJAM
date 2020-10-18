@@ -24,7 +24,7 @@ namespace GameJAM.Components {
 
         private List<Button> _buttons;
 
-        public MainMenuComponent(ContentService content, InputService input, ConfigurationService config, Action onClose, Action onSettings, Action onPlay, Action onLeave) {
+        public MainMenuComponent(ContentService content, InputService input, ConfigurationService config, Action onClose, Action onSettings, Action onTutorial, Action onPlay, Action onLeave) {
             _content = content;
             _input = input;
             _config = config;
@@ -38,7 +38,7 @@ namespace GameJAM.Components {
                 new Button( ) { Text = "settings", ButtonAlign = AlignType.CT, X = _resultScene.Width / 2, Y = _resultScene.Height / 2 + 56,
                     Width = _resultScene.Width - 64, Height = 48, OnClick = onSettings },
                 new Button( ) { Text = "tutorial", ButtonAlign = AlignType.CT, X = _resultScene.Width / 2, Y = _resultScene.Height / 2,
-                    Width = _resultScene.Width - 64, Height = 48 },
+                    Width = _resultScene.Width - 64, Height = 48, OnClick = onTutorial },
                 new Button( ) { Text = "play", ButtonAlign = AlignType.CT, X = _resultScene.Width / 2, Y = _resultScene.Height / 2 - 56,
                     Width = _resultScene.Width - 64, Height = 48, OnClick = onPlay }
             };
