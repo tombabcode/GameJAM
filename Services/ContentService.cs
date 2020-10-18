@@ -64,7 +64,7 @@ namespace GameJAM.Services {
         public Item SpawnItem(string name, int amount = 1) {
             if (ItemsDefinitions.ContainsKey(name.ToLower( ))) {
                 ItemObjectData data = ItemsDefinitions[name];
-                return new Item(data.ID, data.Type, data.Effects, data.Weight, amount);
+                return new Item(data, amount);
             }
 
             return null;

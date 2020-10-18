@@ -3,7 +3,8 @@
 		{ 
 			"ID": "blackberry", 
 			"Type": "Food", 
-			"Weight": 0.02, 
+			"Weight": 0.02,
+			"Rarity": 5,
 			"Effects": [
 				{ "Type": "AttributeSingleUse", "Attribute": "Hunger", "Value": -0.01 },
 				{ "Type": "AttributeSingleUse", "Attribute": "Thirst", "Value": -0.005 }
@@ -12,6 +13,7 @@
 			"ID": "raspberry", 
 			"Type": "Food", 
 			"Weight": 0.01,
+			"Rarity": 7,
 			"Effects": [
 				{ "Type": "AttributeSingleUse", "Attribute": "Hunger", "Value": -0.01 },
 				{ "Type": "AttributeSingleUse", "Attribute": "Thirst", "Value": -0.005 }
@@ -20,6 +22,7 @@
 			"ID": "mushroom_leccinum", 
 			"Type": "Food", 
 			"Weight": 0.08,
+			"Rarity": 4,
 			"Effects": [
 				{ "Type": "AttributeSingleUse", "Attribute": "Hunger", "Value": -0.05 }
 			]
@@ -27,21 +30,62 @@
 			"ID": "mushroom_cantharellus", 
 			"Type": "Food",
 			"Weight": 0.05,
+			"Rarity": 7,
 			"Effects": [
 				{ "Type": "AttributeSingleUse", "Attribute": "Hunger", "Value": -0.05 }
 			] 
 		}, { 
 			"ID": "mushroom_amanita", 
 			"Type": "Food",
-			"Weight": 0.1
+			"Weight": 0.1,
+			"Rarity": 4,
+			"Effects": [
+				{ "Type": "AttributeSingleUse", "Attribute": "Tiredness", "Value": 0.25 },
+				{ "Type": "AttributeSingleUse", "Attribute": "Food", "Value": -0.1 }
+			]
 		}, { 
 			"ID": "water", 
-			"Name": "Water", 
 			"Type": "Fluid", 
 			"Weight": 0.1,
+			"Rarity": 10,
 			"Effects": [
 				{ "Type": "AttributeSingleUse", "Attribute": "Thirst", "Value": -0.1 }
 			] 
+		}, {
+			"ID": "rain_water",
+			"Type": "Fluid",
+			"Weight": 0.1,
+			"Rarity": 12,
+			"Effects": [
+				{ "Type": "AttributeSingleUse", "Attribute": "Thirst", "Value": -0.15 }
+			]
+		}, {
+			"ID": "raw_rabbit",
+			"Type": "Food",
+			"Weight": 5,
+			"Rarity": 20,
+			"Effects": [
+				{ "Type": "AttributeSingleUse", "Attribute": "Hunger", "Value": -0.3 },
+				{ "Type": "AttributeSingleUse", "Attribute": "Thirst", "Value": 0.08 }
+			]
+		}, {
+			"ID": "snail",
+			"Type": "Food",
+			"Weight": 0.03,
+			"Rarity": 10,
+			"Effects": [
+				{ "Type": "AttributeSingleUse", "Attribute": "Hunger", "Value": -0.05 },
+				{ "Type": "AttributeSingleUse", "Attribute": "Thirst", "Value": 0.05 }
+			]
+		}, {
+			"ID": "dirty_water",
+			"Type": "Fluid",
+			"Weight": 0.1,
+			"Rarity": 5,
+			"Effects": [
+				{ "Type": "AttributeSingleUse", "Attribute": "Thirst", "Value": -0.02 },
+				{ "Type": "AttributeSingleUse", "Attribute": "Hunger", "Value": 0.1 }
+			]
 		}
 	]
 }

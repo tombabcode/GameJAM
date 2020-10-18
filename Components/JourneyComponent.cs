@@ -39,10 +39,7 @@ namespace GameJAM.Components {
 
             _resultScene = new RenderTarget2D(_content.Device, _config.ViewWidth, _config.ViewHeight);
 
-            List<Item> itemsFound = new List<Item>( );
-            itemsFound.Add(content.SpawnItem("blackberry"));
-            itemsFound.Add(content.SpawnItem("mushroom_leccinum"));
-            itemsFound.Add(content.SpawnItem("water", 10));
+            List<Item> itemsFound = ItemGeneratorService.Get(_player, _content);
 
             _itemListElement = new ItemListElement(_content, _input, itemsFound, _config.ViewWidth - 16, _config.ViewHeight - 196) {
                 AbsoluteX = AbsoluteX + 8,

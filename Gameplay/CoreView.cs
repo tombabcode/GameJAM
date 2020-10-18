@@ -57,7 +57,7 @@ namespace GameJAM.Gameplay {
 
         public void NewGame( ) {
             _component = null;
-            _player = new Player(40);
+            _player = new Player(20);
             _score = 0;
             _itemHovered = null;
         }

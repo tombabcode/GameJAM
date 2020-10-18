@@ -10,6 +10,7 @@ namespace GameJAM.Models {
         public string ID { get; set; }
         public ItemType Type { get; set; }
         public float Weight { get; set; }
+        public int Rarity { get; set; }
         public List<ItemEffectData> Effects { get; set; } = new List<ItemEffectData>( );
     }
 

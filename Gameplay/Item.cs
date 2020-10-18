@@ -9,15 +9,17 @@ namespace GameJAM.Gameplay {
         public ItemType Type { get; private set; }
         public float Weight { get; private set; }
         public int Amount { get; private set; }
+        public int Rarity { get; private set; }
 
         public List<ItemEffectData> Effects { get; private set; } = new List<ItemEffectData>( );
 
-        public Item(string id, ItemType type, List<ItemEffectData> effects, float weight = 1, int amount = 1) {
-            ID = id;
-            Type = type;
-            Weight = weight < 0 ? .1f : weight;
+        public Item(ItemObjectData model, int amount) {
+            ID = model.ID;
+            Type = model.Type;
+            Weight = model.Weight < 0 ? .1f : model.Weight;
             Amount = amount < 1 ? 1 : amount;
-            Effects = effects ?? new List<ItemEffectData>( );;
+            Rarity = model.Rarity < 1 ? 1 : model.Rarity;
+            Effects = model.Effects ?? new List<ItemEffectData>( );;
         }
 
         public void Add(Item item) {
