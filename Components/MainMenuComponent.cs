@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using GameJAM.Components.Elements;
 using GameJAM.Services;
+using GameJAM.Components.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using TBEngine.Services;
 using TBEngine.Types;
+
 using DH = TBEngine.Utils.DisplayHelper;
-using LANG = TBEngine.Utils.TranslationService;
 
 namespace GameJAM.Components {
     public sealed class MainMenuComponent : IComponent {
@@ -20,15 +19,12 @@ namespace GameJAM.Components {
 
         private RenderTarget2D _resultScene;
 
-        private Action _onClose;
-
         private List<Button> _buttons;
 
         public MainMenuComponent(ContentService content, InputService input, ConfigurationService config, Action onClose, Action onSettings, Action onTutorial, Action onPlay, Action onLeave) {
             _content = content;
             _input = input;
             _config = config;
-            _onClose = onClose;
 
             _resultScene = new RenderTarget2D(_content.Device, _config.ViewWidth, _config.ViewHeight);
 

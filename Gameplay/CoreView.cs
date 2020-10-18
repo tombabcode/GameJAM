@@ -1,18 +1,17 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using TBEngine.Services;
+using Microsoft.Xna.Framework.Graphics;
+using GameJAM.Types;
+using GameJAM.Models;
 using GameJAM.Services;
 using GameJAM.Components;
-
-using DH = TBEngine.Utils.DisplayHelper;
-using System.Collections.Generic;
 using GameJAM.Components.Elements;
 using TBEngine.Types;
-using Microsoft.Xna.Framework.Graphics;
 using TBEngine.Utils;
-using GameJAM.Models;
-using GameJAM.Types;
+
+using DH = TBEngine.Utils.DisplayHelper;
 
 namespace GameJAM.Gameplay {
     public sealed class CoreView {

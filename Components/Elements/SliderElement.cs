@@ -1,7 +1,8 @@
-﻿using GameJAM.Services;
+﻿using System;
+using GameJAM.Services;
 using Microsoft.Xna.Framework;
-using System;
 using TBEngine.Types;
+
 using DH = TBEngine.Utils.DisplayHelper;
 using LANG = TBEngine.Utils.TranslationService;
 

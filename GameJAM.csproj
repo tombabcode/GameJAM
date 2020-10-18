@@ -6,10 +6,11 @@
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
     <PackageReference Include="MonoGame.Framework.Content.Pipeline" Version="3.8.0.1641" />
+    <PackageReference Include="System.Text.Json" Version="4.7.2" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="TBEngine">
-      <HintPath>..\TBEngine\bin\Debug\netstandard2.0\TBEngine.dll</HintPath>
+      <HintPath>..\..\TBEngine\TBEngine\bin\Debug\netstandard2.0\TBEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

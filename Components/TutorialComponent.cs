@@ -4,6 +4,7 @@ using GameJAM.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using TBEngine.Types;
+
 using DH = TBEngine.Utils.DisplayHelper;
 
 namespace GameJAM.Components {

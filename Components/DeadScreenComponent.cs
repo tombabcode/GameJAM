@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using GameJAM.Components.Elements;
-using GameJAM.Gameplay;
 using GameJAM.Services;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using TBEngine.Services;
 using TBEngine.Types;
 using DH = TBEngine.Utils.DisplayHelper;
-using CFG = GameJAM.Types.ConfigType;
 using Microsoft.Xna.Framework;
 
 namespace GameJAM.Components {

@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using GameJAM.Components.Elements;
 using GameJAM.Gameplay;
 using GameJAM.Services;
-using Microsoft.Xna.Framework.Graphics;
+using GameJAM.Components.Elements;
 using Microsoft.Xna.Framework.Input;
-using TBEngine.Services;
+using Microsoft.Xna.Framework.Graphics;
 using TBEngine.Types;
+
 using DH = TBEngine.Utils.DisplayHelper;
-using CFG = GameJAM.Types.ConfigType;
 
 namespace GameJAM.Components {
     public sealed class InventoryComponent : IComponent {

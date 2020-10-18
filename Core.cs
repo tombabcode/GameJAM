@@ -1,13 +1,12 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using TBEngine.Services;
+using System;
+using GameJAM.Services;
 using GameJAM.Gameplay;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Graphics;
 using TBEngine.Utils;
 
 using CFG = GameJAM.Types.ConfigType;
-using GameJAM.Services;
-using Microsoft.Xna.Framework.Input;
-using System;
 
 namespace GameJAM {
     public sealed class Core : Game {

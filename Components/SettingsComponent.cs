@@ -1,12 +1,12 @@
 ﻿using System;
-using GameJAM.Components.Elements;
-using GameJAM.Gameplay;
-using GameJAM.Services;
 using GameJAM.Types;
+using GameJAM.Services;
+using GameJAM.Components.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using TBEngine.Types;
 using TBEngine.Utils;
+
 using DH = TBEngine.Utils.DisplayHelper;
 
 namespace GameJAM.Components {

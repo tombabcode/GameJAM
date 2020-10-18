@@ -1,7 +1,6 @@
+using System.Collections.Generic;
 using GameJAM.Models;
 using GameJAM.Types;
-using System;
-using System.Collections.Generic;
 
 namespace GameJAM.Gameplay {
     public sealed class Item {

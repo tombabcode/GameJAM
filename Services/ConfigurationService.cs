@@ -1,7 +1,8 @@
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System;
 using TBEngine.Services;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Graphics;
+
 using CFG = GameJAM.Types.ConfigType;
 
 namespace GameJAM {

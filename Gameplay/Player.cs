@@ -1,6 +1,6 @@
-using GameJAM.Types;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
+using GameJAM.Types;
 
 namespace GameJAM.Gameplay {
     public sealed class Player {

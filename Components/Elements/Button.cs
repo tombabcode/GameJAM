@@ -2,8 +2,9 @@ using System;
 using GameJAM.Services;
 using Microsoft.Xna.Framework;
 using TBEngine.Types;
-using TBEngine.Utils;
+
 using DH = TBEngine.Utils.DisplayHelper;
+using AH = TBEngine.Utils.AlignmentHelper;
 
 namespace GameJAM.Components.Elements {
     public sealed class Button {
@@ -28,14 +29,14 @@ namespace GameJAM.Components.Elements {
         private bool _isOver;
 
         public void Update(InputService input) {
-            Vector2 position = AlignmentHelper.Position(ButtonAlign, X, Y, Width, Height);
+            Vector2 position = AH.Position(ButtonAlign, X, Y, Width, Height);
             _isOver = input.IsOver((int)position.X, (int)position.Y, Width, Height);
             if (input.HasSwitchedArea((int)position.X, (int)position.Y, Width, Height)) OnHover?.Invoke( );
             if (_isOver && input.IsLMBPressedOnce( )) OnClick?.Invoke( );
         }
 
         public void Display(ContentService content) {
-            Vector2 position = AlignmentHelper.Position(ButtonAlign, X, Y, Width, Height);
+            Vector2 position = AH.Position(ButtonAlign, X, Y, Width, Height);
             if (BackgroundColor != null) DH.Box((int)position.X, (int)position.Y, Width, Height, BackgroundColor ?? Color.White);
 
             DH.Text(
